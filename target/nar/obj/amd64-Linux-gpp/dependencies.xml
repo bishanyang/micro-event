@@ -1,0 +1,18 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<dependencies>
+   <includePath signature="/Itarget/nar/javah-include /I../../../../usr/lib/jvm/java-8-oracle/include /I../../../../usr/lib/jvm/java-8-oracle/include/linux">
+      <source file="../../../../../../../../usr/lib/jvm/java-8-oracle/include/jni.h" lastModified="15285532608">
+         <include file="../../../../../../../../usr/lib/jvm/java-8-oracle/include/linux/jni_md.h"/>
+         <sysinclude file="../../../../../../../../usr/include/stdio.h"/>
+      </source>
+      <source file="../../../../src/main/c++/event_jni.cpp" lastModified="152a0050a98">
+         <include file="../../javah-include/edu_cmu_ml_rtw_micro_event_EventExtractor.h"/>
+         <include file="../../../../../../../../usr/lib/jvm/java-8-oracle/include/jni.h"/>
+         <sysinclude file="../../../../../../../../usr/include/stdlib.h"/>
+         <sysinclude file="../../../../../../../../usr/include/string.h"/>
+      </source>
+      <source file="../../javah-include/edu_cmu_ml_rtw_micro_event_EventExtractor.h" lastModified="152592e65d8">
+         <include file="../../../../../../../../usr/lib/jvm/java-8-oracle/include/jni.h"/>
+      </source>
+   </includePath>
+</dependencies>
