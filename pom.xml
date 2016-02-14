@@ -53,6 +53,13 @@
      <artifactId>micro-cat</artifactId>
      <version>0.0.1-SNAPSHOT</version>
    </dependency>
+   <dependency>
+    <groupId>org.codehaus.jackson</groupId>
+    <artifactId>jackson-json</artifactId>
+    <version>1.0</version>
+    <scope>system</scope>
+    <systemPath>${project.basedir}/src/main/resources/json-20151123.jar</systemPath>
+	</dependency>
   </dependencies>
   <repositories>      
   	<repository>

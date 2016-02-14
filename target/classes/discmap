@@ -1,0 +1,29 @@
+also_Expansion	POL_POL
+and_Expansion	POL_POL
+as a result_Contingency	POL_POL
+as well_Expansion	POL_POL
+but_Comparison	POL_ALT
+because_Contingency	POL_POL
+finally_Expansion	POL_POL
+for example_Expansion	POL_POL
+for instance_Expansion	POL_POL
+furthermore_Expansion	POL_POL
+hence_0	POL_POL
+however_0	POL_ALT
+in addition_0	POL_POL
+indeed_Expansion	POL_POL
+in short_Expansion	POL_POL
+in fact_Expansion	POL_POL
+in other words_Expansion	POL_POL
+moreover_Expansion	POL_POL
+nevertheless_Comparison	POL_ALT
+nonetheless_0	POL_ALT
+otherwise_0	POL_ALT
+overall_Expansion	POL_POL
+since_Contingency	POL_POL
+so that_Expansion	POL_POL
+so_Contingency	POL_POL
+still_Comparison	POL_ALT
+thus_Contingency	POL_POL
+while_Comparison	POL_ALT
+yet_Comparison	POL_ALT

@@ -1,0 +1,148 @@
+Accountant
+Actor
+Actuary
+Agricultural and food scientist
+scientist
+Architect
+Artist
+Automotive mechanic
+Mechanic
+Bookkeeping clerk
+Clerk
+Carpenter
+Chemist
+Childcare worker
+Civil engineer
+Coach
+Computer hardware engineer
+Engineer
+Computer software engineer
+Computer support specialist
+Specialist
+Cost estimator
+Estimator
+Court reporter
+Reporter
+Player
+Dancer
+Database administrator
+Administrator
+Designer
+Desktop publisher
+Disc jockey
+Doctor
+Drafter
+Economist
+Electrical engineer
+Electrician
+Engineering technician
+Technician
+Environmental scientist
+Farmer
+Financial analyst
+Analyst
+Firefighter
+Human resources assistant
+Assistant
+Manager
+Judge
+Landscape architect
+Lawyer
+Librarian
+Loan officer
+Officer
+Musician
+Nurse
+Paralegal
+Pharmacist
+Photographer
+Physicist
+Pilot
+Police officer
+Politician
+Professional athlete
+Psychologist
+Officer
+Athlete
+Real estate agent
+Agent
+Recreation and fitness worker
+Worker
+Recreational therapist
+Therapist
+Reporter
+Secretary
+Social worker
+Statistician
+Surveyor
+Systems analyst
+Teacher
+Urban planner
+Veterinarian
+Webmaster
+Writer
+Zookeeper
+Accountant
+Actuary
+Advocate
+Architect
+Doctor
+Dentist
+Engineer
+Financial analyst
+Lawyer
+Librarian
+Nurse
+Pilot
+Pharmacist
+Physician
+Physical Therapist
+Professor
+Psychologist
+Scientist
+Admiral
+Policeman
+General
+Vice-Admiral
+Lieutenant
+Commodore
+Major
+Captain
+Colonel
+Brigadier
+Commander
+Officer
+Priest
+Rabbi
+Leader
+Duke
+Baron
+King
+Prince
+Queen
+Knight
+Princess
+Count
+Bishop
+Duchess
+Viscount
+Conte
+Royal
+Baronet
+Politician
+Chancellor
+Governor
+Statesman
+Dicator
+Dictator
+President
+Legislator
+Diplomat
+Mayor
+Emperor
+Ninja
+Pirate
+Royalty
+Cherub
+Vampire
+Goddess
