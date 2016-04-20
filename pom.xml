@@ -94,7 +94,7 @@
     </repository>
   </repositories>
   <distributionManagement>
-  	<repository>
+    <repository>
 		<id>rtw-libs-snapshot</id>
 		<name>rtw-libs-snapshot</name>
 		<url>dav:http://rtw.ml.cmu.edu:8081/artifactory/libs-snapshot-local</url>
