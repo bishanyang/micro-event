@@ -58,7 +58,7 @@ public class EventExtractor implements AnnotatorTokenSpan<String> {
 		NarSystem.loadLibrary();
 	}
 
-	private native String  annotate(String inputData, String resData, String wordvecData,
+	private native String annotate(String inputData, String resData, String wordvecData,
 			String entityModel, String eventModel, String treeModel, 
 			String subtypeDict, String roleDict);
 
