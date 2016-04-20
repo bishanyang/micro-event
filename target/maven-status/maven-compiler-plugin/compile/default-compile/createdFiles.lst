@@ -1,7 +1,12 @@
 edu/cmu/ml/rtw/micro/event/AceEvent.class
 edu/cmu/ml/rtw/micro/event/EventExtractor$1.class
+<<<<<<< HEAD
 edu/cmu/ml/rtw/micro/event/AceEvent$EventArgument.class
 edu/cmu/ml/rtw/micro/event/NarSystem.class
+=======
+edu/cmu/ml/rtw/micro/event/NarSystem.class
+edu/cmu/ml/rtw/micro/event/AceEvent$EventArgument.class
+>>>>>>> origin/master
 edu/cmu/ml/rtw/micro/event/EventExtractor.class
 edu/cmu/ml/rtw/micro/event/EventExtractor$Singleton.class
 edu/cmu/ml/rtw/micro/event/AceEntity.class

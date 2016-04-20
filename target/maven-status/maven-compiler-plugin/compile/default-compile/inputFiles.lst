@@ -1,4 +1,11 @@
+<<<<<<< HEAD
 /home/bishan/micro-demo/micro-event/src/main/java/edu/cmu/ml/rtw/micro/event/AceEvent.java
 /home/bishan/micro-demo/micro-event/target/nar/nar-generated/edu/cmu/ml/rtw/micro/event/NarSystem.java
 /home/bishan/micro-demo/micro-event/src/main/java/edu/cmu/ml/rtw/micro/event/AceEntity.java
 /home/bishan/micro-demo/micro-event/src/main/java/edu/cmu/ml/rtw/micro/event/EventExtractor.java
+=======
+/home/bkisiel/rtw/micro-event/src/main/java/edu/cmu/ml/rtw/micro/event/EventExtractor.java
+/home/bkisiel/rtw/micro-event/src/main/java/edu/cmu/ml/rtw/micro/event/AceEvent.java
+/home/bkisiel/rtw/micro-event/src/main/java/edu/cmu/ml/rtw/micro/event/AceEntity.java
+/home/bkisiel/rtw/micro-event/target/nar/nar-generated/edu/cmu/ml/rtw/micro/event/NarSystem.java
+>>>>>>> origin/master
