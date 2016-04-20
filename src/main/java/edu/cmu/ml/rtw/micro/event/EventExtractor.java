@@ -32,10 +32,6 @@ import edu.cmu.ml.rtw.generic.util.Triple;
 import edu.cmu.ml.rtw.micro.cat.data.annotation.nlp.AnnotationTypeNLPCat;
 import edu.cmu.ml.rtw.micro.event.NarSystem;
 
-import org.codehaus.jackson.JsonGenerationException;
-import org.codehaus.jackson.map.JsonMappingException;
-import org.codehaus.jackson.map.ObjectMapper;
-
 public class EventExtractor implements AnnotatorTokenSpan<String> {
 	private static final AnnotationType<?>[] REQUIRED_ANNOTATIONS = new AnnotationType<?>[] {
 		AnnotationTypeNLP.TOKEN,
@@ -62,8 +58,9 @@ public class EventExtractor implements AnnotatorTokenSpan<String> {
 		NarSystem.loadLibrary();
 	}
 
-	private native boolean initialize(String configFile);
-	private native String  annotate(String inputData);
+	private native String  annotate(String inputData, String resData, String wordvecData,
+			String entityModel, String eventModel, String treeModel, 
+			String subtypeDict, String roleDict);
 
 	@Override
 	public String getName() {
@@ -85,63 +82,78 @@ public class EventExtractor implements AnnotatorTokenSpan<String> {
 		return true;
 	}
 	
-	private void outputBratAnno(DocumentNLP document, List<AceEvent> aceEvents, 
-			HashMap<String, AceEntity> aceEntities, String outputPath) {
-		try {
-			File txtfile = new File(outputPath + document.getName().replace(' ', '_') + ".txt");
-			//System.out.println("Event: "+outputPath + document.getName());
-			FileWriter txtfw = new FileWriter(txtfile.getAbsoluteFile());
-			BufferedWriter txtbw = new BufferedWriter(txtfw);
-			txtbw.write(document.getOriginalText());
-			txtbw.close();
-			txtfw.close();
-			
-			File annfile = new File(outputPath + document.getName().replace(' ', '_') + ".ann");
-			FileWriter annfw = new FileWriter(annfile.getAbsoluteFile());
-			BufferedWriter bw = new BufferedWriter(annfw);
-			
-			for (Map.Entry<String,AceEntity> entry : aceEntities.entrySet()) {
-			    String key = entry.getKey();
-			    AceEntity en = entry.getValue();
-			    bw.write(en.toString() + "\n");
-			}
-			
-			for (AceEvent event : aceEvents) {
-				bw.write(event.toTriggerString() + "\n");
-				bw.write(event.toEventString() + "\n");
-			}
-			
-			bw.close();
-			annfw.close();
-			
-		} catch (IOException ioe) {
-		    throw new RuntimeException(ioe);
-		}
-	}
-
 	@Override
 	public List<Triple<TokenSpan, String, Double>> annotate(DocumentNLP document) {
-		String bratPath = "";
+		StringBuffer resData = new StringBuffer();
+		StringBuffer wordvecData = new StringBuffer();
+		StringBuffer entityModel = new StringBuffer();
+		StringBuffer eventModel = new StringBuffer();
+		StringBuffer treeModel = new StringBuffer();
+		StringBuffer subtypeDict = new StringBuffer();
+		StringBuffer roleDict = new StringBuffer();
+		
 		try {
-			InputStream resource = EventExtractor.class.getResourceAsStream("/event.config");
-			BufferedReader bfr = new BufferedReader(new InputStreamReader(resource));
-			String line;
-			String configStr = "";
-			while ((line = bfr.readLine()) != null) {
-				configStr += line + "\n";
-				String[] fields = line.split("=");
-				if (fields.length > 1 && fields[0].equals("bratpath")) {
-					bratPath = fields[1];
-				}
+			InputStream r1 = EventExtractor.class.getClassLoader().getResourceAsStream("models/entity_mention_model");
+			BufferedReader bfr1 = new BufferedReader(new InputStreamReader(r1));
+			String line = "";
+			while ((line = bfr1.readLine()) != null) {
+				entityModel.append(line).append("\n");
 			}
-			bfr.close();
+			bfr1.close();
 			
-			if (!initialize(configStr))
-				throw new IllegalStateException("Unable to initialize event tagger.");
+			InputStream r2 = EventExtractor.class.getClassLoader().getResourceAsStream("models/event_mention_model");
+			BufferedReader bfr2 = new BufferedReader(new InputStreamReader(r2));
+			line = "";
+			while ((line = bfr2.readLine()) != null) {
+				eventModel.append(line).append("\n");
+			}
+			bfr2.close();
+			
+			InputStream r3 = EventExtractor.class.getClassLoader().getResourceAsStream("models/event_argument_model");
+			BufferedReader bfr3 = new BufferedReader(new InputStreamReader(r3));
+			line = "";
+			while ((line = bfr3.readLine()) != null) {
+				treeModel.append(line).append("\n");
+			}
+			bfr3.close();
+			
+			InputStream r4 = EventExtractor.class.getClassLoader().getResourceAsStream("event_resources/featuredict");
+			BufferedReader bfr4 = new BufferedReader(new InputStreamReader(r4));
+			line = "";
+			while ((line = bfr4.readLine()) != null) {
+				resData.append(line).append("\n");
+			}
+			bfr4.close();
+			
+			InputStream r5 = EventExtractor.class.getClassLoader().getResourceAsStream("event_resources/pretrained_ace_embeddings");
+			BufferedReader bfr5 = new BufferedReader(new InputStreamReader(r5));
+			line = "";
+			while ((line = bfr5.readLine()) != null) {
+				wordvecData.append(line).append("\n");
+			}
+			bfr5.close();
+			
+			InputStream r6 = EventExtractor.class.getClassLoader().getResourceAsStream("event_resources/subtype_role_dict.txt");
+			BufferedReader bfr6 = new BufferedReader(new InputStreamReader(r6));
+			line = "";
+			while ((line = bfr6.readLine()) != null) {
+				subtypeDict.append(line).append("\n");
+			}
+			bfr6.close();
+			
+			InputStream r7 = EventExtractor.class.getClassLoader().getResourceAsStream("event_resources/argrole_dict.txt");
+			BufferedReader bfr7 = new BufferedReader(new InputStreamReader(r7));
+			line = "";
+			while ((line = bfr7.readLine()) != null) {
+				roleDict.append(line).append("\n");
+			}
+			bfr7.close();
 			
 		} catch (IOException ioe) {
 		    throw new RuntimeException(ioe);
 		}
+		
+		System.out.println("Finish loading event resources...");
 		
 		StringBuilder inputData = new StringBuilder();
 		
@@ -228,30 +240,9 @@ public class EventExtractor implements AnnotatorTokenSpan<String> {
 			inputData.append("#end sentence\n");
 		}
 		
-		/*try {
-			File txtfile = new File(bratPath + document.getName().replace(' ', '_') + ".orig.txt");
-			//System.out.println("Event: "+outputPath + document.getName());
-			FileWriter txtfw = new FileWriter(txtfile.getAbsoluteFile());
-			BufferedWriter txtbw = new BufferedWriter(txtfw);
-			//txtbw.write(inputData.toString());
-			txtbw.write(document.getOriginalText());
-			txtbw.close();
-			txtfw.close();
-			
-			txtfile = new File(bratPath + document.getName().replace(' ', '_') + ".txt");
-			//System.out.println("Event: "+outputPath + document.getName());
-			txtfw = new FileWriter(txtfile.getAbsoluteFile());
-			txtbw = new BufferedWriter(txtfw);
-			//txtbw.write(inputData.toString());
-			txtbw.write(document.getText());
-			txtbw.close();
-			txtfw.close();
-		} catch (IOException ioe) {
-		    throw new RuntimeException(ioe);
-		}
-		*/
-		
-		String outputData = annotate(inputData.toString());
+		String outputData = annotate(inputData.toString(), resData.toString(), wordvecData.toString(),
+				entityModel.toString(), eventModel.toString(), treeModel.toString(), 
+				subtypeDict.toString(), roleDict.toString());
 		
 		List<Triple<TokenSpan, String, Double>> events = new ArrayList<Triple<TokenSpan, String, Double>>();
 		
@@ -280,9 +271,6 @@ public class EventExtractor implements AnnotatorTokenSpan<String> {
 			String eventType = subfields[3];
 			score = Double.valueOf(subfields[4]);
 			TokenSpan eventTrigger = new TokenSpan(document, sentIndex, tokenStart, tokenEnd);
-			
-			//System.out.println(document.getName() + " " + sentIndex + " " + document.getSentenceTokenCount(sentIndex)+" "+ tokenStart + " " + tokenEnd);
-			//System.out.println(document.getSentence(sentIndex));
 			
 			String eventLabel = eventType + "=" + eventTrigger.toString();
 			
@@ -330,14 +318,10 @@ public class EventExtractor implements AnnotatorTokenSpan<String> {
 				eventInst.AddArgument(enID, roleType);
 			}
 			
-			events.add(new Triple<TokenSpan, String, Double>(eventTrigger, eventLabel, score));
-			
 			aceEvents.add(eventInst);
+			
+			events.add(new Triple<TokenSpan, String, Double>(eventTrigger, eventLabel, score));
 		}
-		
-		// output brat annotations
-		if (bratPath != "" && aceEvents.size() > 0)
-			outputBratAnno(document, aceEvents, aceEntities, bratPath);
 		
 		return events;
 	}

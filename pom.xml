@@ -54,12 +54,10 @@
      <version>0.0.1-SNAPSHOT</version>
    </dependency>
    <dependency>
-    <groupId>org.codehaus.jackson</groupId>
-    <artifactId>jackson-json</artifactId>
-    <version>1.0</version>
-    <scope>system</scope>
-    <systemPath>${project.basedir}/src/main/resources/json-20151123.jar</systemPath>
-	</dependency>
+ 		<groupId>edu.cmu.ml.rtw</groupId>
+ 		<artifactId>micro-event-data</artifactId>
+ 		<version>0.0.1-SNAPSHOT</version>
+   </dependency>
   </dependencies>
   <repositories>      
   	<repository>
@@ -97,9 +95,9 @@
   </repositories>
   <distributionManagement>
   	<repository>
-			<id>rtw-libs-snapshot</id>
-			<name>rtw-libs-snapshot</name>
-			<url>dav:http://rtw.ml.cmu.edu:8081/artifactory/libs-snapshot-local</url>
+		<id>rtw-libs-snapshot</id>
+		<name>rtw-libs-snapshot</name>
+		<url>dav:http://rtw.ml.cmu.edu:8081/artifactory/libs-snapshot-local</url>
     </repository>
   </distributionManagement>
 </project>
