@@ -1,16 +1,9 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <history>
-<<<<<<< HEAD
    <processor signature="4.8 -shared -L/home/bishan/micro-demo/micro-event/src/nar/resources/aol/amd64-Linux-gpp/lib -Bdynamic -levent_tagger -fexceptions -lstdc++">
-      <target file="libmicro-event-0.0.1-SNAPSHOT.so" lastModified="15434757ab8">
-         <source file="../../../../../../src/nar/resources/aol/amd64-Linux-gpp/lib/libevent_tagger.so" lastModified="154345c2270"/>
-         <source file="../../../../obj/amd64-Linux-gpp/event_jni.o" lastModified="154347572e8"/>
-=======
-   <processor signature="4.8 -shared -L/home/bkisiel/rtw/micro-event/src/nar/resources/aol/amd64-Linux-gpp/lib -Bdynamic -levent_tagger -fexceptions -lstdc++">
-      <target file="libmicro-event-0.0.1-SNAPSHOT.so" lastModified="1542a59c980">
-         <source file="../../../../../../src/nar/resources/aol/amd64-Linux-gpp/lib/libevent_tagger.so" lastModified="152e2cf9cf8"/>
-         <source file="../../../../obj/amd64-Linux-gpp/event_jni.o" lastModified="1542a59c1b0"/>
->>>>>>> origin/master
+      <target file="libmicro-event-0.0.1-SNAPSHOT.so" lastModified="154411bb318">
+         <source file="../../../../../../src/nar/resources/aol/amd64-Linux-gpp/lib/libevent_tagger.so" lastModified="15441183878"/>
+         <source file="../../../../obj/amd64-Linux-gpp/event_jni.o" lastModified="154411bab48"/>
       </target>
    </processor>
 </history>

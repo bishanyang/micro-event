@@ -7,6 +7,7 @@
   <version>0.0.1-SNAPSHOT</version>
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <maven.repository>file:///home/bishan/.m2/repository</maven.repository>
   </properties>
   <build>
     <plugins>
@@ -94,10 +95,10 @@
     </repository>
   </repositories>
   <distributionManagement>
-    <repository>
-		<id>rtw-libs-snapshot</id>
-		<name>rtw-libs-snapshot</name>
-		<url>dav:http://rtw.ml.cmu.edu:8081/artifactory/libs-snapshot-local</url>
+  <repository>
+      <id>repository</id>
+      <name>repository</name>
+    <url>${maven.repository}</url>
     </repository>
   </distributionManagement>
 </project>

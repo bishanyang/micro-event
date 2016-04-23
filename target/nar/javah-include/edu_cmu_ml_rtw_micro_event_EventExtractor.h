@@ -9,11 +9,19 @@ extern "C" {
 #endif
 /*
  * Class:     edu_cmu_ml_rtw_micro_event_EventExtractor
+ * Method:    initialize
+ * Signature: (Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)Z
+ */
+JNIEXPORT jboolean JNICALL Java_edu_cmu_ml_rtw_micro_event_EventExtractor_initialize
+  (JNIEnv *, jobject, jstring, jstring, jstring, jstring, jstring, jstring, jstring);
+
+/*
+ * Class:     edu_cmu_ml_rtw_micro_event_EventExtractor
  * Method:    annotate
- * Signature: (Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;
+ * Signature: (Ljava/lang/String;)Ljava/lang/String;
  */
 JNIEXPORT jstring JNICALL Java_edu_cmu_ml_rtw_micro_event_EventExtractor_annotate
-  (JNIEnv *, jobject, jstring, jstring, jstring, jstring, jstring, jstring, jstring, jstring);
+  (JNIEnv *, jobject, jstring);
 
 #ifdef __cplusplus
 }

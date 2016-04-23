@@ -56,34 +56,7 @@ public class EventExtractor implements AnnotatorTokenSpan<String> {
 
 	private EventExtractor() {
 		NarSystem.loadLibrary();
-	}
-
-	private native String annotate(String inputData, String resData, String wordvecData,
-			String entityModel, String eventModel, String treeModel, 
-			String subtypeDict, String roleDict);
-
-	@Override
-	public String getName() {
-		return "cmunell_event-0.0.1";
-	}
-
-	@Override
-	public AnnotationType<String> produces() {
-		return EVENT_FRAME;
-	}
-
-	@Override
-	public AnnotationType<?>[] requires() {
-		return REQUIRED_ANNOTATIONS;
-	}
-
-	@Override
-	public boolean measuresConfidence() {
-		return true;
-	}
-	
-	@Override
-	public List<Triple<TokenSpan, String, Double>> annotate(DocumentNLP document) {
+		
 		StringBuffer resData = new StringBuffer();
 		StringBuffer wordvecData = new StringBuffer();
 		StringBuffer entityModel = new StringBuffer();
@@ -154,6 +127,40 @@ public class EventExtractor implements AnnotatorTokenSpan<String> {
 		}
 		
 		System.out.println("Finish loading event resources...");
+		
+		if (!initialize(resData.toString(), wordvecData.toString(),
+				entityModel.toString(), eventModel.toString(), treeModel.toString(), 
+				subtypeDict.toString(), roleDict.toString()))
+			throw new IllegalStateException("Unable to initialize event extractor.");
+	}
+
+	private native boolean initialize(String resData, String wordvecData,
+			String entityModel, String eventModel, String treeModel, 
+			String subtypeDict, String roleDict);
+	private native String annotate(String inputData);
+
+	@Override
+	public String getName() {
+		return "cmunell_event-0.0.1";
+	}
+
+	@Override
+	public AnnotationType<String> produces() {
+		return EVENT_FRAME;
+	}
+
+	@Override
+	public AnnotationType<?>[] requires() {
+		return REQUIRED_ANNOTATIONS;
+	}
+
+	@Override
+	public boolean measuresConfidence() {
+		return true;
+	}
+	
+	@Override
+	public List<Triple<TokenSpan, String, Double>> annotate(DocumentNLP document) {
 		
 		StringBuilder inputData = new StringBuilder();
 		
@@ -240,9 +247,7 @@ public class EventExtractor implements AnnotatorTokenSpan<String> {
 			inputData.append("#end sentence\n");
 		}
 		
-		String outputData = annotate(inputData.toString(), resData.toString(), wordvecData.toString(),
-				entityModel.toString(), eventModel.toString(), treeModel.toString(), 
-				subtypeDict.toString(), roleDict.toString());
+		String outputData = annotate(inputData.toString());
 		
 		List<Triple<TokenSpan, String, Double>> events = new ArrayList<Triple<TokenSpan, String, Double>>();
 		
