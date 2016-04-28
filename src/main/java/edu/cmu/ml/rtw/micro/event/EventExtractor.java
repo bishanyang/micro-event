@@ -65,6 +65,7 @@ public class EventExtractor implements AnnotatorTokenSpan<String> {
 		StringBuffer subtypeDict = new StringBuffer();
 		StringBuffer roleDict = new StringBuffer();
 		
+		System.out.println("Loading event resources...");
 		try {
 			InputStream r1 = EventExtractor.class.getClassLoader().getResourceAsStream("models/entity_mention_model");
 			BufferedReader bfr1 = new BufferedReader(new InputStreamReader(r1));
